@@ -20,6 +20,9 @@ npm start #or
 gulp watch
 ```
 
+#### Building Gulp Plugins
+https://github.com/rvagg/through2
+
 ##### Question
 - how do we use a scripts in `package.json` to do common utility tasks?
   - delete the compiled `dist` directory
