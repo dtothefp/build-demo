@@ -15,9 +15,13 @@ alias rmall="nvm use && rm -rf node_modules && npm cache clean && npm i"
 - Setup Gulp
 ```sh
 npm i -g gulp
-npm i -D gulp && babel
+npm i
+npm start
 ```
 
 ##### Question
-- how do we use a script in `package.json` to compile JS from `src` to `dist`
-
+- how do we use a scripts in `package.json` to do common utility tasks?
+  - delete the compiled `dist` directory
+  - copy `index.html` from `src` to `dist`
+  - compile `es6` code to `es5` and move to `dist`
+  - start a local server

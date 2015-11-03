@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "node ./build/index.js --task=clean",
+    "copy": "node ./build/index.js --task=copy",
+    "es6": "babel ./src --stage 0 --out-dir ./dist",
+    "log": "node ./dist",
+    "start": "npm-run-all --sequential clean --parallel copy es6 --sequential log server",
+    "server": "browser-sync start --server --index ./dist/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +23,13 @@
   },
   "homepage": "https://github.com/dtothefp/build-demo#readme",
   "devDependencies": {
-    "babel": "^6.0.15",
-    "gulp": "^3.9.0"
+    "babel": "^5.8.29",
+    "babel-core": "^5.8.33",
+    "browser-sync": "^2.9.11",
+    "del": "^2.0.2",
+    "fs-extra": "^0.26.2",
+    "gulp": "^3.9.0",
+    "npm-run-all": "^1.2.12",
+    "yargs": "^3.29.0"
   }
 }
