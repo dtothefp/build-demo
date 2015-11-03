@@ -16,7 +16,8 @@ alias rmall="nvm use && rm -rf node_modules && npm cache clean && npm i"
 ```sh
 npm i -g gulp
 npm i
-npm start
+npm start #or
+gulp watch
 ```
 
 ##### Question
@@ -28,5 +29,5 @@ npm start
 
 ##### Question
 - how do we compile es6 for the "client"?
-  - currently babel code breaks in browser
+  - currently babel code breaks in browser if we include the `babel-runtime`
   - how do we start linting all our `.js` files with `eslint`
