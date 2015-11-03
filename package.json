@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/dtothefp/build-demo/issues"
   },
-  "homepage": "https://github.com/dtothefp/build-demo#readme"
+  "homepage": "https://github.com/dtothefp/build-demo#readme",
+  "devDependencies": {
+    "babel": "^6.0.15",
+    "gulp": "^3.9.0"
+  }
 }
