@@ -12,3 +12,4 @@ const bigObj = {
 };
 
 console.log('I\'m a big OBJ %s', JSON.stringify(bigObj));
+console.log('whatevs');
