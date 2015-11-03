@@ -25,3 +25,8 @@ npm start
   - copy `index.html` from `src` to `dist`
   - compile `es6` code to `es5` and move to `dist`
   - start a local server
+
+##### Question
+- how do we compile es6 for the "client"?
+  - currently babel code breaks in browser
+  - how do we start linting all our `.js` files with `eslint`
