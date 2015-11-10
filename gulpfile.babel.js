@@ -1,16 +1,55 @@
 import gulp from 'gulp';
+import {intersection} from 'lodash';
 import loadPlugins from 'gulp-load-plugins';
 import sequence from 'run-sequence';
 import del from 'del';
 import browserSync from 'browser-sync';
+import webpack from 'webpack';
+import makeWebpackConfig from './gulp/webpack';
 
-const isDev = process.argv.indexOf('watch') !== -1;
+const devTasks = ['serve', 'watch'];
+const isDev = intersection(process.argv, devTasks).length > 0;
 const plugins = loadPlugins();
 const src = './src';
 const dest = './dist';
 const html = `${src}/*.html`;
 const js = `${src}/*.js`;
 const {reload} = browserSync;
+
+gulp.task('webpack', (cb) => {
+  const config = makeWebpackConfig({isDev, src, dest});
+  const compiler = webpack(config);
+
+  if (!isDev) {
+    compiler.run((err, stats) => {
+      //stats.toString();
+      // log stats here
+    });
+  } else {
+    // builds the bundle and watches for changes
+    // updates after this will be very fast
+    compiler.watch({ // watch options:
+      aggregateTimeout: 300,
+      poll: true
+    }, (err, stats) => {
+      stats.toString();
+      // log stats here
+    });
+  }
+
+  compiler.plugin('done', (stats) => {
+    console.log('DONE');
+
+    if (cb) {
+      const gulpCb = cb;
+      cb = null;
+      gulpCb();
+    } else {
+      reload();
+    }
+
+  });
+});
 
 gulp.task('clean', (cb) => {
   del([dest]).then((files) => {
@@ -32,7 +71,7 @@ gulp.task('es6', () => {
     .pipe(reload({stream: true}));
 });
 
-gulp.task('serve', (cb) => {
+gulp.task('serve', ['webpack'], (cb) => {
   browserSync({
     server: dest
   }, cb);
